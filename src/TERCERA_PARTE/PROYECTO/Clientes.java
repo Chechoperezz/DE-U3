@@ -1,6 +1,8 @@
-import ENUMS.EstadoCliente;
-import ENUMS.EstadoVenta;
-import ENUMS.Modalidad;
+package TERCERA_PARTE.PROYECTO;
+
+import TERCERA_PARTE.PROYECTO.ENUMS.EstadoCliente;
+import TERCERA_PARTE.PROYECTO.ENUMS.EstadoVenta;
+import TERCERA_PARTE.PROYECTO.ENUMS.Modalidad;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -227,7 +229,21 @@ public class Clientes {
             venta.setModalidad(modalidad1);
             venta.setTotal(total);
 
-            if (productoEncontrado.registrarVentaLIFO(venta)) {
+            /*
+            A.SE CREARON TRES METODOS QUE GUARDAN LA COMPRA QUE EL CLIENTE REALIZA
+            B.COMPRA ES REPRESENTADA COMO VENTA(DEBIDO A QUE ES UN SISTEMA DE GESTION)
+
+            1. SE REGISTRA LA VENTA EN QUEUE DE FORMA FIFO
+            2.SE REGISTRA LA VENTA EN DEQUEUE DE FORMA LIFO
+            3.SE REGISTRA LA VENTA EN UN STACK
+
+            C. EL REGISTRO 2 Y 3 SON MUY SIMILARES. DIFIEREN EN LA DECLARACION DE
+            LA ESTRUCTURA DE DATO.
+             */
+
+            if (productoEncontrado.registrarVentaQUEUELIFO(venta)
+                    && productoEncontrado.registrarVentaQueueFIFO(venta)
+            && productoEncontrado.registrarVentaStack(venta)) {
                 System.out.println("TRANSACCIÓN EXITOSA");
                 clienteEncontrado.setEstado(EstadoCliente.VIP);
                 clienteEncontrado.setCantidadCompras(clienteEncontrado.getCantidadCompras() + 1);

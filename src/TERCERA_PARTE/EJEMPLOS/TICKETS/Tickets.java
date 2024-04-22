@@ -1,4 +1,6 @@
-import Prioridad;
+package TERCERA_PARTE.EJEMPLOS.TICKETS;
+
+import TERCERA_PARTE.EJEMPLOS.HOSPITAL.Prioridad;
 
 public class Tickets {
     String NombreDeCliente;
@@ -30,7 +32,7 @@ public class Tickets {
 
     @Override
     public String toString() {
-        return "Tickets{" +
+        return "TERCERA_PARTE.EJEMPLOS.TICKETS.Tickets{" +
                 "NombreDeCliente='" + NombreDeCliente + '\'' +
                 ", prioridad=" + prioridad +
                 '}';

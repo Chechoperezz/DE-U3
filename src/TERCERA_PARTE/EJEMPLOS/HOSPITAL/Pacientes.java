@@ -1,3 +1,5 @@
+package TERCERA_PARTE.EJEMPLOS.HOSPITAL;
+
 public class Pacientes {
 
     String Nombre;
@@ -40,7 +42,7 @@ public class Pacientes {
 
     @Override
     public String toString() {
-        return "Pacientes{" +
+        return "TERCERA_PARTE.EJEMPLOS.HOSPITAL.Pacientes{" +
                 "Nombre='" + Nombre + '\'' +
                 ", Edad=" + Edad +
                 ", prioridad=" + prioridad +

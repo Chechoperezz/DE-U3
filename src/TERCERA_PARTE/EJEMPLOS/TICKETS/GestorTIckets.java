@@ -1,12 +1,14 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+package TERCERA_PARTE.EJEMPLOS.TICKETS;
+
+import TERCERA_PARTE.EJEMPLOS.HOSPITAL.Prioridad;
+
+import java.util.*;
 
 public class GestorTIckets {
 
     static Queue<Tickets> ticketsQueue = new LinkedList<>();
-    static Stack<Tickets> ticketsStack = new Stack<>();
+    static Deque<Tickets> ticketsDeque = new LinkedList<>();
+
 
     public void GestionarFIFO() {
         System.out.println("QUEUE DE TICKETS");
@@ -18,13 +20,17 @@ public class GestorTIckets {
 
     }
 
+    //AMBOS METODOS ITERAN DESDE IZQUIERDA A DERECHA
+    //LA DIFERENCIA MAS IMPORTANTE, ES LA INCERSION DE DATOS DESDE EL PRINCIPIO
     public void GestionarLifo() {
-        System.out.println("STACK DE TICKETS");
-        while (!ticketsStack.isEmpty()) {
-            Tickets tickets = ticketsStack.pop();
-            System.out.println("TICKET ASIGNADO : " + tickets);
+        System.out.println("DEQUEUE DE TICKETS");
+        while (!ticketsDeque.isEmpty()) {
+            Tickets tickets = ticketsDeque.pop();
+            System.out.println("TICKET ASIGNADO : " + tickets.toString());
         }
+        System.out.println("LISTA DE TICKETS VACIA");
     }
+
 
     public void agregarTicket() {
 
@@ -37,9 +43,14 @@ public class GestorTIckets {
             String nombre = scn.nextLine();
 
             tickets.setNombreDeCliente(nombre);
+
+            //LA PRIORIDAD NO INFLUYE EN LA INCERSION DE DATOS
             tickets.setPrioridad(AsignarPrioridadTicket());
 
-            System.out.println("¿Desea agregar otro paciente? (s/n)");
+            ticketsQueue.offer(tickets);// SE AGREGA EL TICKET AL FINAL DE LA QUEUE
+            ticketsDeque.push(tickets); // SE AGREGA EL TICKET AL INICIO DE LA DEQUEUE
+
+            System.out.println("¿Desea agregar otro ticket? (s/n)");
             respuesta = scn.nextLine();
         } while (respuesta.equalsIgnoreCase("s"));
     }

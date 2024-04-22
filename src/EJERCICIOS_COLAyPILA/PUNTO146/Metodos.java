@@ -1,4 +1,4 @@
-package EJERCICIOS.EJERCICIOS_COLAyPILA.PUNTO146;
+package EJERCICIOS_COLAyPILA.PUNTO146;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -10,35 +10,46 @@ public class Metodos {
     }
 
     public void infixToPostFix(@NotNull String expression) {
-        Stack<Character> sings = new Stack<>();
-        Queue<Character> result = new LinkedList<>();
+        //SE UTILIZO EL ALGORITMO DE SHUNTING YARD
+        Stack<Character> sings = new Stack<>(); //STACK PARA SIGNOS
+        Queue<Character> result = new LinkedList<>(); // STACK PARA NUMEROS/EXPRESION CONVERTIDA
 
         for (int i = 0; i < expression.length(); i++) {
             char S = expression.charAt(i);
             if (Character.isLetterOrDigit(S)) {
-                result.offer(S);
+                result.offer(S);  // CHAR ES NUMERO/LETRA SE AÑADE AUTOMATICAMENTE A LA QUEUE
             } else if (S == '(') {
-                sings.push(S);
+                sings.push(S);  // SI ES UN "(", SE AÑADE AL STACK
             } else if (S == ')') {
-                while (!sings.isEmpty() && sings.peek() != '(') {
-                    result.offer(sings.pop());
+                while (!sings.isEmpty() && sings.peek() != '(') {   //SE BUSCA EL PARENTESIS "ABRIDOR" EN EL STACK
+                    result.offer(sings.pop());  //MIENTRAS ESO SUCEDE LOS SIGNOS SE AÑADEN A LA QUEUE
                 }
-                sings.pop();
+                sings.pop();  //SE ELIMINA EL "ABRIDOR DEL STACK UNA VEZ ENCONTRADO
             } else  {
                 while (!sings.isEmpty() && importance(sings.peek()) >= importance(S)) {
+                    /*
+                    SI ES UN SIGNO Y LA LISTA NO ESTA VACIA
+                    1. SE BUSCA EL SIGNO CON MAYOR IMPORTANCIA DENTRO DEL STACK
+                       ANQADIENDOLO AL QUEUE.
+                     */
                     result.add(sings.pop());
                 }
+                //SI LA IMPORTANCIA ES MENOR Y LA LISTA ESTA VACIA , SE AÑADE AL STACK
                 sings.push(S);
             }
         }
 
+        //ESTO ASEGURA QUE NO SE OMITAN SIGNOS
         while (!sings.isEmpty()) {
             result.offer(sings.pop());
         }
 
+        StringBuilder postfixExpression = new StringBuilder();
+        for (char c : result) {
+            postfixExpression.append(c);
+        }
 
-        String postfixExpression = result.toString();
-        System.out.println("Postfix expression: " + postfixExpression);
+        System.out.println("Postfix expression: " + postfixExpression.toString());
     }
 
     public String postfixToInfix(@NotNull String expression) {

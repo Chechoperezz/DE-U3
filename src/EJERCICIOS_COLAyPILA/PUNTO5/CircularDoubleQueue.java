@@ -1,10 +1,8 @@
-package EJERCICIOS.EJERCICIOS_COLAyPILA.PUNTO5;
+package EJERCICIOS_COLAyPILA.PUNTO5;
 
 import java.util.NoSuchElementException;
 
 public class CircularDoubleQueue {
-
-
     Node rear;
 
     public CircularDoubleQueue() {
@@ -42,7 +40,7 @@ public class CircularDoubleQueue {
         }
     }
 
-    public int deleteRear() {
+    public int deleteBack() {
         if (rear == null) {
             throw new NoSuchElementException("Queue is empty");
         }
@@ -56,6 +54,23 @@ public class CircularDoubleQueue {
             newRear.next = front;
             front.prev = newRear;
             rear = newRear;
+        }
+
+        return data;
+    }
+
+    public int deleteFront() {
+        if (rear == null) {
+            throw new NoSuchElementException("Queue is empty");
+        }
+
+        Node front = rear.next;
+        int data = front.data;
+        if (front == rear) {
+            rear = null;
+        } else {
+            rear.next = front.next;
+            front.next.prev = rear;
         }
 
         return data;

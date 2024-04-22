@@ -1,3 +1,5 @@
+package TERCERA_PARTE.PROYECTO;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -196,7 +198,7 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" +
+        return "TERCERA_PARTE.PROYECTO.Compra{" +
                 "subtotal=" + subtotal +
                 ", iva=" + iva +
                 ", total=" + total +

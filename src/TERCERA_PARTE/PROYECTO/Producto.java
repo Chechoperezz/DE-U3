@@ -1,3 +1,5 @@
+package TERCERA_PARTE.PROYECTO;
+
 import java.util.*;
 
 
@@ -20,6 +22,8 @@ public class Producto {
     private static Queue<Producto> productoQueue = new LinkedList<>();
 
     private static Deque<Producto> productoDeque = new LinkedList<>();
+
+    private static Stack<Producto> productoStack = new Stack<>();
 
 
     public void showProducts() {
@@ -92,14 +96,17 @@ public class Producto {
         productos.add(nuevoProducto);
         productoQueue.offer(nuevoProducto);
         productoDeque.push(nuevoProducto);
+        productoStack.push(nuevoProducto);
         System.out.println("PRODUCTO REGISTRADO EXITOSAMENTE:\n" + nuevoProducto);
     }
 
-    public boolean registrarVentaQUEUEkLIFO(Venta venta) {
+    public boolean registrarVentaQUEUELIFO(Venta venta) {
+        //EN TEORIA SE VENDERIAN EL PRODUCTO REGSITRADO MAS RECIENTE
         boolean passed = false;
         while (!productoDeque.isEmpty()){
             Producto producto = productoDeque.peek();
-            if (venta.getCodigoProducto()==producto.getCodigo() && producto.getUnidades()>= venta.getCantidad()){
+            if (venta.getCodigoProducto()==producto.getCodigo() &&
+                    producto.getUnidades()>= venta.getCantidad()){
                 productoDeque.pop();
                 passed=true;
                 break;
@@ -108,11 +115,27 @@ public class Producto {
         return passed;
     }
     public boolean registrarVentaQueueFIFO(Venta venta){
+        //EN TEORIA SE VENDERIA EL PRODUCTO MAS "VIEJO"
         boolean passed = false;
         while (!productoQueue.isEmpty()){
             Producto producto = productoQueue.peek();
-            if (venta.getCodigoProducto() == producto.getCodigo() && producto.getUnidades() >= venta.getCantidad()){
+            if (venta.getCodigoProducto() == producto.getCodigo() &&
+                    producto.getUnidades() >= venta.getCantidad()){
                 productoQueue.poll();
+                passed=true;
+                break;
+            }
+        }
+        return passed;
+    }
+    public boolean registrarVentaStack(Venta venta){
+        //EN TEORIA SE VENDERIA EL PRODUCTO REGISTRADO MAS RECIENTE
+        boolean passed = false;
+        while (!productoStack.isEmpty()){
+            Producto producto = productoStack.peek();
+            if (venta.getCodigoProducto() == producto.getCodigo() &&
+                    producto.getUnidades() >= venta.getCantidad()){
+                productoStack.pop();
                 passed=true;
                 break;
             }
@@ -243,7 +266,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
+        return "TERCERA_PARTE.PROYECTO.Producto{" +
                 "codigo=" + codigo +
                 ", nombre='" + nombre + '\'' +
                 ", marca='" + marca + '\'' +

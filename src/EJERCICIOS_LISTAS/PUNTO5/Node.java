@@ -1,4 +1,4 @@
-package EJERCICIOS.EJERCICIOS_LISTAS.PUNTO5;
+package EJERCICIOS_LISTAS.PUNTO5;
 
 public class Node {
     public int data;

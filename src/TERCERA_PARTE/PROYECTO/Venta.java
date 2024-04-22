@@ -1,5 +1,7 @@
-import ENUMS.EstadoVenta;
-import ENUMS.Modalidad;
+package TERCERA_PARTE.PROYECTO;
+
+import TERCERA_PARTE.PROYECTO.ENUMS.EstadoVenta;
+import TERCERA_PARTE.PROYECTO.ENUMS.Modalidad;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,7 +77,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" +
+        return "TERCERA_PARTE.PROYECTO.Venta{" +
                 "codigoProducto=" + codigoProducto +
                 ", medioDePago='" + medioDePago + '\'' +
                 ", fecha=" + fecha +
